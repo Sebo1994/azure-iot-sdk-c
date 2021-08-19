@@ -29,9 +29,7 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 endif()
 
 
-include (CTest)
-
-option(enable_warnings "enable strict warnings-as-errors based on the compiler" OFF)
+option(enable_warnings "enable strict warnings-as-errors based on the compiler" ON)
 
 if (enable_warnings)
     if (MSVC)

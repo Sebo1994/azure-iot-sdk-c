@@ -31,7 +31,7 @@ endif()
 
 include (CTest)
 
-option(enable_warnings "enable strict warnings-as-errors based on the compiler" ON)
+option(enable_warnings "enable strict warnings-as-errors based on the compiler" OFF)
 
 if (enable_warnings)
     if (MSVC)

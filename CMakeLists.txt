@@ -28,6 +28,7 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     add_definitions(-DMACOSX)
 endif()
 
+include (CTest)
 
 option(enable_warnings "enable strict warnings-as-errors based on the compiler" OFF)
 

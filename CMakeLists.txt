@@ -31,20 +31,24 @@ endif()
 
 include (CTest)
 
-if (MSVC)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /wd4232")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W4 /wd4232")
-    # Make warning as error
-    add_definitions(/WX)
-else()
-    # Make warning as error
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror")
-endif()
+option(enable_warnings "enable strict warnings-as-errors based on the compiler" OFF)
 
-IF(WIN32)
-    # windows needs this define
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+if (enable_warnings)
+    if (MSVC)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /wd4232")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /W4 /wd4232")
+        # Make warning as error
+        add_definitions(/WX)
+    else()
+        # Make warning as error
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror")
+    endif()
+
+    IF(WIN32)
+        # windows needs this define
+        add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+    endif()
 endif()
 
 set(hsm_type_x509 OFF CACHE BOOL "x509 type of hsm used with the Provisioning client")
